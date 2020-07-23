@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="Description" content="Enter your description here"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+<title>Pioneer Bank</title>
+</head>
+<body>
+
+
+
+
+<div id="login-area"  class="container">
+    <h1  class="text-center d-flex justify-content-center ">Welcome to Pioneer Bank</h1>
+    <div  class="row">
+       
+
+        <div class="col-md-1">
+
+        </div>
+        
+        <div class="col-md-10">
+            <div class="login-area  ">
+                <h4>Login</h4>
+                <br>
+                <input class="form-control" type="text" placeholder="Email:">
+                <br>
+                <input class="form-control" type="password" name="" id="" placeholder="Password:">
+                <br>
+                <button id="login" class="btn btn-success">Enter</button>
+            
+            
+            </div>
+        </div>
+        
+        <div class="col-md-1">
+        
+        </div>
+
+
+
+    </div>
+
+    
+</div>
+
+
+<div id="transaction-area" class="container">
+    <h1 id="transaction" class="text-center">Transaction Area</h1>
+
+    <div class="row ">
+    <div class="col-md-4">
+       <div class="deposit ">
+
+   
+
+    <h5>Deposit</h5>
+    <h2>$<span id="initialDeposit">00</span></h2>
+       </div>
+    </div>
+
+    <div class="col-md-4 ">
+          <div class="withdraw">
+            <h5>WithDraw</h5>
+            <h2>$<span id="mainWithdraw">00</span></h2>
+        </div>
+     
+     
+         </div>
+
+         <div class="col-md-4">
+            <div class="balance">
+                <h5>Balance</h5>
+                <h2>$<span id="initialBalance">1340</span></h2>
+                
+            </div>
+         
+         
+             </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="depositWithdraw">
+            <h4>Deposit</h4>
+            <input id="depositAmount"  class="form-control form2" type="text" placeholder="$Amount you want to deposit ">
+            <br>
+            <button id="addDeposit" class="btn btn-success">Deposit</button>
+        </div></div>
+        <div class="col-md-6">
+            <div class="depositWithdraw">
+            <h4>Withdraw</h4>
+            <input id="withdrawValue"class="form-control form2" type="text" placeholder="$Amount you want to withdraw">
+            <br>
+            <button id="withdrawBtn" class="btn btn-success">Withdraw</button>
+        </div></div>
+
+
+    </div>
+
+    <div class="row d-flex justify-content-center">
+        
+
+        <div class="">
+            <h3 id="inSuffientBalance" class="text-danger text-center">You do not have Sufficient Balance!</h3>
+        </div>
+
+
+        <!-- Footer -->
+<footer class="page-footer font-small mdb-color lighten-3 pt-4">
+
+    
+  
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="https://www.facebook.com/Parijat.Datta642"> Parijat Datta</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
+
+    </div>
+
+
+
+</div>
+
+
+
+<script>
+
+    //login button event handler
+
+const loginBtn=document.getElementById('login');
+loginBtn.addEventListener('click',function(){
+
+const loginArea=document.getElementById('login-area');
+loginArea.style.display='none';
+const transArea=document.getElementById('transaction-area');
+transArea.style.display="block";
+
+})
+
+//deposit button event handler
+
+const depositBtn=document.getElementById('addDeposit');
+depositBtn.addEventListener('click', function(){
+    
+const depositAmount=document.getElementById('depositAmount').value;
+const depositNumber=parseFloat(depositAmount);
+const initialDeposit=document.getElementById('initialDeposit').innerText;
+const initialDepositNumber=parseFloat(initialDeposit);
+const totalDeposit=initialDepositNumber+depositNumber;
+document.getElementById('initialDeposit').innerText=totalDeposit;
+document.getElementById('depositAmount').value="";
+
+//Balance Area Event Handling
+
+const balance=document.getElementById('initialBalance').innerText;
+const balanceNumber=parseFloat(balance);
+totalBalance=balanceNumber+depositNumber;
+document.getElementById('initialBalance').innerText=totalBalance;
+
+
+
+
+
+
+// console.log(depositNumber);
+
+
+})
+
+
+//WithDraw Button Event Handler
+
+const withDrawButtonID=document.getElementById('withdrawBtn');
+withDrawButtonID.addEventListener('click', function(){
+
+
+const withdrawAmount=document.getElementById('withdrawValue').value;
+const withdrawAmountNumber=parseFloat(withdrawAmount);
+const balance=document.getElementById('initialBalance').innerText;
+const balanceNumber=parseFloat(balance);
+if(withdrawAmountNumber<balance){
+document.getElementById('mainWithdraw').innerText=withdrawAmountNumber;
+document.getElementById('withdrawValue').value="";
+
+
+//Balance Area Event Handling
+const balance=document.getElementById('initialBalance').innerText;
+const balanceNumber=parseFloat(balance);
+totalBalance=balanceNumber-withdrawAmountNumber;
+document.getElementById('initialBalance').innerText=totalBalance;}
+
+else{
+    document.getElementById('inSuffientBalance').style.display="block";
+    document.getElementById('withdrawValue').value="";
+}
+
+
+})
+
+
+
+
+
+
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>
